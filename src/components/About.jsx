@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Briefcase, Code2, Layout, MapPin, CheckCircle2, UserCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import ScrollReveal, { StaggerContainer, StaggerItem } from './ScrollReveal';
+import profile from '../assets/images/ahmed_developer_portrait_1790190034321.jpg'
 
 export default function About() {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -32,7 +33,7 @@ export default function About() {
                 {/* Photo Figure with Semantic Figcaption & Fallback */}
                 <figure className="relative aspect-square w-full rounded-xl overflow-hidden bg-[#151D30] border border-white/[0.06] m-0">
                   <img
-                    src="/src/assets/images/ahmed_developer_portrait_1790190034321.jpg"
+                    src={profile}
                     alt="Ahmed Sohail, Full Stack Developer and Intern at Progree"
                     referrerPolicy="no-referrer"
                     onLoad={() => setImageLoaded(true)}
