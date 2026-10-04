@@ -1,3 +1,7 @@
+import ecommerceThumbnail from '../assets/images/project_ecommerce_preview_1790190047885.jpg';
+import portfolioThumbnail from '../assets/images/project_portfolio_preview_1790190058703.jpg';
+import dashboardThumbnail from '../assets/images/project_bank_system_preview_1790190069977.jpg';
+
 export const PROJECTS = [
   {
     id: 'ecommerce-storefront',
@@ -5,7 +9,7 @@ export const PROJECTS = [
     subtitle: 'End-to-End Audio Storefront & REST API',
     description: 'Full-Stack Audio Store with React, PHP & MySQL.',
     technologies: ['React', 'MySQL', 'REST API', 'JavaScript', 'PHP' ,'Tailwind CSS'],
-    thumbnail: '/src/assets/images/project_ecommerce_preview_1790190047885.jpg',
+    thumbnail: ecommerceThumbnail,
     githubUrl: 'https://github.com/Ahmad-Sohail/AudioNest_E-Commerce',
     liveUrl: '#',
     category: 'Full Stack Web App',
@@ -30,7 +34,7 @@ export const PROJECTS = [
     subtitle: 'High-Performance Full-Stack Personal Showcase',
     description: 'A bespoke personal portfolio and content showcase crafted with clean semantic HTML5 markup, customized CSS grid systems, client-side React, and backend API endpoints for inquiries. Engineered for fluid responsiveness and WCAG AA accessibility.',
     technologies: ['React', 'Node.js', 'JavaScript', 'Tailwind CSS', 'CSS Grid', 'REST APIs'],
-    thumbnail: '/src/assets/images/project_portfolio_preview_1790190058703.jpg',
+    thumbnail: portfolioThumbnail,
     githubUrl: 'https://github.com/Ahmad-Sohail',
     liveUrl: '#',
     category: 'Full Stack Web App',
@@ -52,7 +56,7 @@ export const PROJECTS = [
     subtitle: 'Interactive Metric Visualizations & KPI Tracking',
     description: 'A modern, high-density full-stack dashboard providing interactive performance analytics, dynamic SVG data charts, responsive data tables with multi-column sorting, and backend metric API routes.',
     technologies: ['React', 'Node.js', 'Express', 'Python', 'MongoDB', 'JavaScript', 'Tailwind CSS', 'SVG Charts'],
-    thumbnail: '/src/assets/images/project_bank_system_preview_1790190069977.jpg',
+    thumbnail: dashboardThumbnail,
     githubUrl: 'https://github.com/Ahmad-Sohail',
     liveUrl: '#',
     category: 'Full Stack Platform',
