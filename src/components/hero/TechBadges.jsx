@@ -54,7 +54,7 @@ export default function TechBadges() {
         <motion.div
           key={badge.id}
           whileHover={{ y: -3, scale: 1.02 }}
-          className={`flex items-center gap-2 px-3 py-2 rounded-xl bg-[#0F1523]/90 backdrop-blur-md border border-white/[0.08] ${badge.borderHover} transition-colors shadow-md`}
+          className={`flex items-center gap-2 px-3 py-2 rounded-xl bg-[#0F1523]/90 backdrop-blur-md border border-white/8 ${badge.borderHover} transition-colors shadow-md`}
         >
           <div className={`w-6 h-6 rounded-lg ${badge.iconBg} flex items-center justify-center ${badge.iconColor}`}>
             {badge.icon}
