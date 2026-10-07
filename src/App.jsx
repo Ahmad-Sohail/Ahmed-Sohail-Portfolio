@@ -80,13 +80,11 @@ function PortfolioContent() {
           : 'bg-[#080B12] text-[#F8FAFC] selection:bg-[#4F8CFF]/20 selection:text-white'
       } relative overflow-x-hidden w-full max-w-full`}
     >
-      {/* Top Scroll Reading Progress Bar powered by Framer Motion */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#4F8CFF] via-[#8B5CF6] to-[#4F8CFF] z-[100] origin-left pointer-events-none"
         style={{ scaleX }}
       />
 
-      {/* Accessible Skip Link */}
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2.5 focus:bg-[#4F8CFF] focus:text-white focus:rounded-xl focus:shadow-xl focus:outline-none"
@@ -94,10 +92,8 @@ function PortfolioContent() {
         Skip to main content
       </a>
 
-      {/* Sticky Premium Navbar with Semantic HTML5 Header & Nav */}
       <Navbar activeSection={activeSection} />
 
-      {/* Main Landmark Application Block */}
       <main id="main-content" role="main" tabIndex={-1} className="relative z-10 focus:outline-none overflow-x-hidden w-full max-w-full">
         <Hero />
         <About />

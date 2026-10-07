@@ -129,7 +129,7 @@ export default function Hero() {
               <motion.a
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
-                href="/resume-ahmed-sohail.pdf"
+                href="/Ahmad_Sohail_Resume.pdf"
                 download="Ahmed_Sohail_Resume.pdf"
                 className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm font-semibold text-slate-200 bg-[#0F1523] hover:bg-[#151D30] hover:text-white border border-[#4F8CFF]/25 sm:border-white/10 hover:border-[#4F8CFF]/50 rounded-xl transition-all shadow-sm text-center cursor-pointer overflow-hidden box-border active:border-[#4F8CFF]"
                 aria-label="Download Ahmed Sohail's Resume PDF"
