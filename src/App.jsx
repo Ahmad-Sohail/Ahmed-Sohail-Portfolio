@@ -81,7 +81,7 @@ function PortfolioContent() {
       } relative overflow-x-hidden w-full max-w-full`}
     >
       <motion.div
-        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#4F8CFF] via-[#8B5CF6] to-[#4F8CFF] z-[100] origin-left pointer-events-none"
+        className="fixed top-0 left-0 right-0 h-0.75 bg-linear-to-r from-[#4F8CFF] via-[#8B5CF6] to-[#4F8CFF] z-100 origin-left pointer-events-none"
         style={{ scaleX }}
       />
 
@@ -121,7 +121,7 @@ function PortfolioContent() {
             className={`fixed bottom-6 right-6 z-40 p-3 rounded-xl transition-all shadow-xl backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-[#4F8CFF] cursor-pointer ${
               theme === 'light'
                 ? 'bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 shadow-slate-200/60'
-                : 'bg-[#0F1523]/90 hover:bg-[#151D30] text-slate-300 hover:text-white border border-white/[0.1]'
+                : 'bg-[#0F1523]/90 hover:bg-[#151D30] text-slate-300 hover:text-white border border-white/10'
             }`}
             aria-label="Scroll back to top"
           >
