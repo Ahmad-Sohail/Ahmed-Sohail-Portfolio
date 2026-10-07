@@ -18,7 +18,7 @@ export default function ThemeToggle({ showLabel = false, className = '' }) {
           : 'w-10 h-10 p-2 text-sm'
       } ${
         isDark
-          ? 'bg-[#0F1523] border border-white/[0.12] text-amber-300 hover:text-amber-200 hover:border-amber-400/40 hover:bg-[#151D30] shadow-sm'
+          ? 'bg-[#0F1523] border border-white/12 text-amber-300 hover:text-amber-200 hover:border-amber-400/40 hover:bg-[#151D30] shadow-sm'
           : 'bg-white border border-slate-300 text-slate-800 hover:text-blue-600 hover:border-blue-400 hover:bg-slate-50 shadow-xs'
       } ${className}`}
       aria-label={isDark ? 'Switch to high-contrast light theme' : 'Switch to dark theme'}
