@@ -30,7 +30,7 @@ const PROJECT_THEMES = [
     badgeBorder: "border-amber-400/30",
     buttonGradient: "from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600",
     buttonShadow: "shadow-amber-500/25",
-    techStack: "React · Node.js · CSS Grid · REST APIs",
+    techStack: "React 19 · Tailwind CSS · Vite · Motion",
   },
   {
     accent: "#34D399",
@@ -43,7 +43,137 @@ const PROJECT_THEMES = [
     badgeBorder: "border-emerald-400/30",
     buttonGradient: "from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600",
     buttonShadow: "shadow-emerald-500/25",
-    techStack: "React · Node.js · Python · MongoDB · SVG",
+    techStack: "PHP · MySQL · REST APIs · Discussions",
+  },
+  {
+    accent: "#A855F7",
+    accentText: "text-purple-400",
+    accentBg: "bg-purple-400",
+    accentGlow: "bg-purple-400/15",
+    accentBorder: "border-purple-400/30",
+    accentBorderHover: "hover:border-purple-400/50",
+    badgeText: "text-purple-300",
+    badgeBorder: "border-purple-400/30",
+    buttonGradient: "from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700",
+    buttonShadow: "shadow-purple-500/25",
+    techStack: "JavaScript · DOM API · LocalStorage · CSS3",
+  },
+  {
+    accent: "#F43F5E",
+    accentText: "text-rose-400",
+    accentBg: "bg-rose-400",
+    accentGlow: "bg-rose-400/15",
+    accentBorder: "border-rose-400/30",
+    accentBorderHover: "hover:border-rose-400/50",
+    badgeText: "text-rose-300",
+    badgeBorder: "border-rose-400/30",
+    buttonGradient: "from-rose-500 to-pink-600 hover:from-rose-600 hover:to-pink-700",
+    buttonShadow: "shadow-rose-500/25",
+    techStack: "React · JavaScript · E-Commerce · Tailwind",
+  },
+  {
+    accent: "#06B6D4",
+    accentText: "text-cyan-400",
+    accentBg: "bg-cyan-400",
+    accentGlow: "bg-cyan-400/15",
+    accentBorder: "border-cyan-400/30",
+    accentBorderHover: "hover:border-cyan-400/50",
+    badgeText: "text-cyan-300",
+    badgeBorder: "border-cyan-400/30",
+    buttonGradient: "from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700",
+    buttonShadow: "shadow-cyan-500/25",
+    techStack: "JavaScript · Neural Networks · Canvas · Physics",
+  },
+  {
+    accent: "#84CC16",
+    accentText: "text-lime-400",
+    accentBg: "bg-lime-400",
+    accentGlow: "bg-lime-400/15",
+    accentBorder: "border-lime-400/30",
+    accentBorderHover: "hover:border-lime-400/50",
+    badgeText: "text-lime-300",
+    badgeBorder: "border-lime-400/30",
+    buttonGradient: "from-lime-500 to-emerald-600 hover:from-lime-600 hover:to-emerald-700",
+    buttonShadow: "shadow-lime-500/25",
+    techStack: "JavaScript · GSAP · ScrollTrigger · CSS3",
+  },
+  {
+    accent: "#EAB308",
+    accentText: "text-yellow-400",
+    accentBg: "bg-yellow-400",
+    accentGlow: "bg-yellow-400/15",
+    accentBorder: "border-yellow-400/30",
+    accentBorderHover: "hover:border-yellow-400/50",
+    badgeText: "text-yellow-300",
+    badgeBorder: "border-yellow-400/30",
+    buttonGradient: "from-yellow-500 to-amber-600 hover:from-yellow-600 hover:to-amber-700",
+    buttonShadow: "shadow-yellow-500/25",
+    techStack: "JavaScript · DOM · Audio API · Game Logic",
+  },
+  {
+    accent: "#EC4899",
+    accentText: "text-pink-400",
+    accentBg: "bg-pink-400",
+    accentGlow: "bg-pink-400/15",
+    accentBorder: "border-pink-400/30",
+    accentBorderHover: "hover:border-pink-400/50",
+    badgeText: "text-pink-300",
+    badgeBorder: "border-pink-400/30",
+    buttonGradient: "from-pink-500 to-rose-600 hover:from-pink-600 hover:to-rose-700",
+    buttonShadow: "shadow-pink-500/25",
+    techStack: "JavaScript · DOM · Algorithms · Animation",
+  },
+  {
+    accent: "#38BDF8",
+    accentText: "text-sky-400",
+    accentBg: "bg-sky-400",
+    accentGlow: "bg-sky-400/15",
+    accentBorder: "border-sky-400/30",
+    accentBorderHover: "hover:border-sky-400/50",
+    badgeText: "text-sky-300",
+    badgeBorder: "border-sky-400/30",
+    buttonGradient: "from-sky-500 to-cyan-600 hover:from-sky-600 hover:to-cyan-700",
+    buttonShadow: "shadow-sky-500/25",
+    techStack: "JavaScript · Grid Logic · Turn Duel · CSS3",
+  },
+  {
+    accent: "#EF4444",
+    accentText: "text-red-500",
+    accentBg: "bg-red-500",
+    accentGlow: "bg-red-500/15",
+    accentBorder: "border-red-500/30",
+    accentBorderHover: "hover:border-red-500/50",
+    badgeText: "text-red-400",
+    badgeBorder: "border-red-500/30",
+    buttonGradient: "from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700",
+    buttonShadow: "shadow-red-500/25",
+    techStack: "React · HTML5 Video · Tailwind CSS · REST API",
+  },
+  {
+    accent: "#1DB954",
+    accentText: "text-[#1DB954]",
+    accentBg: "bg-[#1DB954]",
+    accentGlow: "bg-[#1DB954]/15",
+    accentBorder: "border-[#1DB954]/30",
+    accentBorderHover: "hover:border-[#1DB954]/50",
+    badgeText: "text-[#1DB954]",
+    badgeBorder: "border-[#1DB954]/30",
+    buttonGradient: "from-[#1DB954] to-emerald-600 hover:from-[#1aa34a] hover:to-emerald-700",
+    buttonShadow: "shadow-[#1DB954]/25",
+    techStack: "React · Web Audio API · Audio Engine · Tailwind",
+  },
+  {
+    accent: "#E50914",
+    accentText: "text-[#E50914]",
+    accentBg: "bg-[#E50914]",
+    accentGlow: "bg-[#E50914]/15",
+    accentBorder: "border-[#E50914]/30",
+    accentBorderHover: "hover:border-[#E50914]/50",
+    badgeText: "text-[#E50914]",
+    badgeBorder: "border-[#E50914]/30",
+    buttonGradient: "from-[#E50914] to-red-800 hover:from-[#c40812] hover:to-red-900",
+    buttonShadow: "shadow-red-600/25",
+    techStack: "React · TMDB API · OTT Streaming · Tailwind",
   },
 ];
 
@@ -150,9 +280,11 @@ export default function Projects() {
             <div className="flex items-center gap-3 self-start md:self-auto shrink-0">
               {/* Numerical Slide Counter */}
               <div className="px-3 py-1.5 rounded-xl bg-[#0F1523] border border-white/8 text-xs font-mono font-medium text-slate-300 flex items-center gap-1.5 tabular-nums">
-                <span className={currentTheme.accentText}>0{currentIndex + 1}</span>
+                <span className={currentTheme.accentText}>
+                  {currentIndex + 1 < 10 ? `0${currentIndex + 1}` : currentIndex + 1}
+                </span>
                 <span className="text-slate-600">/</span>
-                <span>0{total}</span>
+                <span>{total < 10 ? `0${total}` : total}</span>
               </div>
 
               {/* Prev / Next Buttons */}
@@ -314,9 +446,9 @@ export default function Projects() {
           </div>
 
           {/* Quick Project Selectors / Horizontal Navigation Strip */}
-          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-            {/* Interactive Thumbnail Previews */}
-            <div className="grid grid-cols-3 gap-3 w-full sm:w-auto">
+          <div className="mt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            {/* Interactive Thumbnail Previews with Horizontal Scroll */}
+            <div className="flex items-center gap-2 overflow-x-auto hide-scrollbar py-1 w-full min-w-0">
               {PROJECTS.map((project, index) => {
                 const isActive = index === currentIndex;
                 const theme = PROJECT_THEMES[index] || PROJECT_THEMES[0];
@@ -325,26 +457,26 @@ export default function Projects() {
                     key={project.id}
                     type="button"
                     onClick={() => goToIndex(index)}
-                    className={`flex items-center gap-2.5 p-2 rounded-xl transition-all text-left cursor-pointer border ${
+                    className={`shrink-0 flex items-center gap-2 px-2.5 py-1.5 rounded-xl transition-all text-left cursor-pointer border max-w-[190px] ${
                       isActive
                         ? `bg-[#0F1523] ${theme.accentBorder} shadow-md`
                         : "bg-white/2 hover:bg-white/4 border-white/6 opacity-70 hover:opacity-100"
                     }`}
                     aria-label={`Go to slide ${index + 1}: ${project.title}`}
                   >
-                    <div className="w-10 h-8 rounded-lg overflow-hidden shrink-0 bg-[#151D30] border border-white/10">
+                    <div className="w-8 h-7 rounded-md overflow-hidden shrink-0 bg-[#151D30] border border-white/10">
                       <img
                         src={project.thumbnail}
                         alt=""
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <div className="hidden sm:block min-w-0 pr-1">
-                      <div className={`text-xs font-semibold truncate ${isActive ? "text-white" : "text-slate-300"}`}>
+                    <div className="min-w-0 pr-1">
+                      <div className={`text-[11px] font-semibold truncate ${isActive ? "text-white" : "text-slate-300"}`}>
                         {project.title}
                       </div>
-                      <div className="text-[10px] text-slate-500 font-mono">
-                        0{index + 1}
+                      <div className="text-[9px] text-slate-500 font-mono">
+                        {index + 1 < 10 ? `0${index + 1}` : index + 1}
                       </div>
                     </div>
                   </button>
@@ -353,23 +485,25 @@ export default function Projects() {
             </div>
 
             {/* Pagination Dots with gesture hint */}
-            <div className="flex items-center gap-2">
-              <span className="text-[11px] text-slate-500 hidden md:inline-block pr-1 font-medium">
+            <div className="flex items-center gap-2 shrink-0">
+              <span className="text-[11px] text-slate-500 hidden lg:inline-block pr-1 font-medium">
                 Swipe or drag to browse
               </span>
-              {PROJECTS.map((_, index) => (
-                <button
-                  key={index}
-                  type="button"
-                  onClick={() => goToIndex(index)}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    index === currentIndex
-                      ? `w-8 ${currentTheme.accentBg}`
-                      : "w-2 bg-white/20 hover:bg-white/40"
-                  }`}
-                  aria-label={`Go to project slide ${index + 1}`}
-                />
-              ))}
+              <div className="flex items-center gap-1.5 overflow-x-auto hide-scrollbar py-1">
+                {PROJECTS.map((_, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => goToIndex(index)}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer shrink-0 ${
+                      index === currentIndex
+                        ? `w-6 ${currentTheme.accentBg}`
+                        : "w-2 bg-white/20 hover:bg-white/40"
+                    }`}
+                    aria-label={`Go to project slide ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
