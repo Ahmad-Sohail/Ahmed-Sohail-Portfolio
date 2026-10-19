@@ -1,22 +1,25 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import {
   GitBranch,
   Server,
   Palette,
   Database,
   Globe,
+  ChevronLeft,
+  ChevronRight,
+  Sparkles,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SKILLS_DATA } from '../data/portfolioData';
 import ScrollReveal from './ScrollReveal';
 
-// Icon renderer — data mein string key store hai, yahan component milta hai
+// Icon renderer
 function SkillIcon({ type }) {
   switch (type) {
     case 'react':
       return (
         <svg
-          className="w-7 h-7 animate-[spin_16s_linear_infinite]"
+          className="w-6 h-6 animate-[spin_16s_linear_infinite]"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -29,7 +32,7 @@ function SkillIcon({ type }) {
         </svg>
       );
     case 'server':
-      return <Server className="w-6 h-6" />;
+      return <Server className="w-5 h-5" />;
     case 'database':
       return <Database className="w-5 h-5" />;
     case 'globe':
@@ -39,17 +42,16 @@ function SkillIcon({ type }) {
     case 'git':
       return <GitBranch className="w-5 h-5" />;
     case 'js':
-      return <span className="font-mono font-bold text-sm">JS</span>;
+      return <span className="font-mono font-bold text-xs">JS</span>;
     case 'code':
-      return <span className="font-bold font-mono text-sm">&lt;/&gt;</span>;
+      return <span className="font-bold font-mono text-xs">&lt;/&gt;</span>;
     default:
-      return null;
+      return <Sparkles className="w-5 h-5" />;
   }
 }
 
-// Icon wrapper ka size featured vs supporting ke hisaab se alag hai
 function SkillIconWrapper({ iconType, isFeatured, theme }) {
-  const sizeClass = isFeatured ? 'w-12 h-12 rounded-xl' : 'w-10 h-10 rounded-xl';
+  const sizeClass = isFeatured ? 'w-11 h-11 rounded-xl' : 'w-10 h-10 rounded-xl';
   return (
     <div
       className={`${sizeClass} ${theme.iconBg} border ${theme.iconBorder} flex items-center justify-center ${theme.text} group-hover:scale-105 transition-transform shadow-sm`}
@@ -59,55 +61,64 @@ function SkillIconWrapper({ iconType, isFeatured, theme }) {
   );
 }
 
-// Featured card
-function FeaturedSkillCard({ skill }) {
-  const { theme } = skill;
+function SkillCard({ skill }) {
+  const { theme, isFeatured } = skill;
+
   return (
     <motion.article
       layout
-      initial={{ opacity: 0, scale: 0.96 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.96 }}
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95 }}
       whileHover={{ y: -4, borderColor: theme.hoverColorRgba }}
-      whileTap={{ scale: 0.985 }}
-      transition={{ duration: 0.25 }}
-      className={`relative rounded-2xl bg-[#0F1523] border ${theme.border} md:border-white/8 ${theme.borderHover} p-6 sm:p-8 group shadow-lg ${theme.shadow} flex flex-col justify-between overflow-hidden ${theme.borderActive}`}
+      transition={{ duration: 0.2 }}
+      className={`min-w-[280px] sm:min-w-[320px] max-w-[340px] snap-start shrink-0 rounded-2xl bg-[#0F1523] border ${
+        isFeatured ? `${theme.border} md:border-white/12` : 'border-white/8'
+      } p-6 group flex flex-col justify-between shadow-xl relative overflow-hidden select-none transition-colors duration-200`}
     >
-      <div
-        className={`absolute top-0 right-0 w-44 h-44 ${theme.glow} rounded-full blur-3xl pointer-events-none ${theme.glowHover} transition-all duration-500`}
-        aria-hidden="true"
-      />
+      {/* Subtle background ambient corner glow for featured cards */}
+      {isFeatured && (
+        <div
+          className={`absolute -top-10 -right-10 w-32 h-32 ${theme.glow} rounded-full blur-2xl pointer-events-none group-hover:scale-125 transition-transform duration-500`}
+          aria-hidden="true"
+        />
+      )}
 
       <div>
-        <div className="flex items-center justify-between mb-5">
-          <SkillIconWrapper iconType={skill.icon} isFeatured theme={theme} />
+        <div className="flex items-center justify-between mb-4">
+          <SkillIconWrapper iconType={skill.icon} isFeatured={isFeatured} theme={theme} />
           <span
-            className={`text-xs font-semibold px-2.5 py-1 rounded-md ${theme.badgeBg} ${theme.text} border ${theme.badgeBorder} shadow-sm`}
+            className={`text-xs font-semibold px-2.5 py-1 rounded-md ${
+              isFeatured
+                ? `${theme.badgeBg} ${theme.text} border ${theme.badgeBorder}`
+                : 'bg-white/4 text-slate-400 border border-white/6'
+            } shadow-sm`}
           >
             {skill.badge}
           </span>
         </div>
 
         <h3
-          className={`text-2xl font-bold text-white mb-2 ${theme.titleHover} transition-colors`}
+          className={`text-xl font-bold text-white mb-2 ${theme.titleHover} transition-colors tracking-tight`}
         >
           {skill.name}
         </h3>
-        <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
+
+        <p className="text-slate-300 text-xs sm:text-sm leading-relaxed mb-5">
           {skill.description}
         </p>
       </div>
 
-      <footer>
-        <div className="pt-4 border-t border-white/6 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-slate-400">
+      <footer className="pt-3 border-t border-white/6">
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-slate-400">
           {skill.footerTags.map((tag, i) => (
-            <span key={tag} className="flex items-center gap-x-3">
+            <span key={tag} className="flex items-center gap-x-2">
               {i > 0 && (
                 <span aria-hidden="true" className="text-slate-600">
                   ·
                 </span>
               )}
-              <span className="text-slate-200 font-medium">{tag}</span>
+              <span className="text-slate-300 font-medium">{tag}</span>
             </span>
           ))}
         </div>
@@ -116,59 +127,80 @@ function FeaturedSkillCard({ skill }) {
   );
 }
 
-// Supporting card
-function SupportingSkillCard({ skill }) {
-  const { theme } = skill;
-  return (
-    <motion.article
-      layout
-      whileHover={{ y: -4, borderColor: theme.hoverColorRgba }}
-      whileTap={{ scale: 0.985 }}
-      transition={{ duration: 0.2 }}
-      className={`rounded-2xl bg-[#0F1523] border ${theme.border} md:border-white/8 ${theme.borderHover} p-6 group flex flex-col justify-between ${theme.borderActive}`}
-    >
-      <div>
-        <div className="flex items-center justify-between mb-4">
-          <SkillIconWrapper iconType={skill.icon} theme={theme} />
-          <span
-            className={`text-xs ${theme.text} md:text-slate-400 font-medium`}
-          >
-            {skill.badge}
-          </span>
-        </div>
-        <h4
-          className={`text-lg font-bold text-white mb-2 ${theme.titleHover} transition-colors`}
-        >
-          {skill.name}
-        </h4>
-        <p className="text-slate-300 text-sm leading-relaxed mb-4">
-          {skill.description}
-        </p>
-      </div>
-      <footer className="pt-3 border-t border-white/6 text-xs text-slate-400 flex flex-wrap items-center gap-x-2 gap-y-1">
-        {skill.footerTags.map((tag, i) => (
-          <span key={tag} className="flex items-center gap-x-2">
-            {i > 0 && <span aria-hidden="true">·</span>}
-            <span>{tag}</span>
-          </span>
-        ))}
-      </footer>
-    </motion.article>
-  );
-}
-
 export default function Skills() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const categories = ['all', 'frontend', 'backend', 'database', 'tools'];
+  const trackRef = useRef(null);
 
-  const featuredSkills = SKILLS_DATA.filter((s) => s.isFeatured);
-  const supportingSkills = SKILLS_DATA.filter((s) => !s.isFeatured);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  const filterFn = (skill) =>
-    selectedCategory === 'all' || skill.category === selectedCategory;
+  // Mouse drag-to-scroll state
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const scrollLeftRef = useRef(0);
 
-  const visibleFeatured = featuredSkills.filter(filterFn);
-  const visibleSupporting = supportingSkills.filter(filterFn);
+  const filteredSkills = SKILLS_DATA.filter(
+    (skill) => selectedCategory === 'all' || skill.category === selectedCategory
+  );
+
+  const updateScrollBounds = useCallback(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const { scrollLeft, scrollWidth, clientWidth } = el;
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+
+    const maxScroll = scrollWidth - clientWidth;
+    if (maxScroll > 0) {
+      setScrollProgress(Math.min(100, Math.max(0, (scrollLeft / maxScroll) * 100)));
+    } else {
+      setScrollProgress(100);
+    }
+  }, []);
+
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    // Reset scroll to 0 when category changes
+    el.scrollTo({ left: 0, behavior: 'smooth' });
+    updateScrollBounds();
+
+    el.addEventListener('scroll', updateScrollBounds, { passive: true });
+    window.addEventListener('resize', updateScrollBounds);
+    return () => {
+      el.removeEventListener('scroll', updateScrollBounds);
+      window.removeEventListener('resize', updateScrollBounds);
+    };
+  }, [selectedCategory, updateScrollBounds]);
+
+  const scrollBy = (offset) => {
+    if (trackRef.current) {
+      trackRef.current.scrollBy({ left: offset, behavior: 'smooth' });
+    }
+  };
+
+  // Mouse Drag handlers
+  const handleMouseDown = (e) => {
+    if (!trackRef.current) return;
+    isDraggingRef.current = true;
+    startXRef.current = e.pageX - trackRef.current.offsetLeft;
+    scrollLeftRef.current = trackRef.current.scrollLeft;
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDraggingRef.current || !trackRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - trackRef.current.offsetLeft;
+    const walk = (x - startXRef.current) * 1.5;
+    trackRef.current.scrollLeft = scrollLeftRef.current - walk;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    isDraggingRef.current = false;
+  };
 
   return (
     <section
@@ -182,10 +214,10 @@ export default function Skills() {
       />
 
       <div className="fluid-container">
-        {/* Header + Filter Tabs */}
-        <ScrollReveal direction="up" distance={30} className="mb-12 sm:mb-16">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
-            <header className="space-y-3">
+        {/* Header + Category Tabs + Navigation Arrows */}
+        <ScrollReveal direction="up" distance={30} className="mb-8 sm:mb-12">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <header className="space-y-3 max-w-xl">
               <div className="inline-flex items-center gap-2">
                 <span className="text-xs font-bold tracking-widest text-[#4F8CFF] uppercase">
                   FULL STACK STACK
@@ -198,70 +230,112 @@ export default function Skills() {
               >
                 Tools & Technologies
               </h2>
-              <p className="text-slate-400 text-base max-w-xl">
+              <p className="text-slate-400 text-base">
                 A comprehensive full-stack ecosystem spanning responsive client interfaces, scalable server runtimes, RESTful APIs, and database persistence.
               </p>
             </header>
 
-            <div
-              role="tablist"
-              aria-label="Filter skills by technology category"
-              className="flex items-center gap-1 p-1 bg-[#0F1523] border border-white/8 rounded-xl self-start sm:self-auto overflow-x-auto max-w-full"
-            >
-              {categories.map((cat) => (
-                <motion.button
-                  key={cat}
+            {/* Interactive Filter Tabs and Nav Arrows */}
+            <div className="flex flex-wrap items-center gap-3">
+              {/* Category Filter Tabs */}
+              <div
+                role="tablist"
+                aria-label="Filter skills by technology category"
+                className="flex items-center gap-1 p-1 bg-[#0F1523] border border-white/8 rounded-xl overflow-x-auto max-w-full"
+              >
+                {categories.map((cat) => (
+                  <motion.button
+                    key={cat}
+                    type="button"
+                    role="tab"
+                    aria-selected={selectedCategory === cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    whileTap={{ scale: 0.95 }}
+                    className={`relative px-3 py-1.5 text-xs font-medium rounded-lg capitalize transition-colors duration-150 whitespace-nowrap cursor-pointer ${
+                      selectedCategory === cat
+                        ? 'text-white'
+                        : 'text-slate-400 hover:text-white hover:bg-white/4'
+                    }`}
+                  >
+                    {selectedCategory === cat && (
+                      <motion.div
+                        layoutId="skillsActiveTab"
+                        className="absolute inset-0 bg-[#4F8CFF] rounded-lg shadow-sm"
+                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{cat}</span>
+                  </motion.button>
+                ))}
+              </div>
+
+              {/* Slider Navigation Arrows */}
+              <div className="flex items-center gap-2">
+                <button
                   type="button"
-                  role="tab"
-                  aria-selected={selectedCategory === cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  whileTap={{ scale: 0.95 }}
-                  className={`relative px-3 py-1.5 text-xs font-medium rounded-lg capitalize transition-colors duration-150 whitespace-nowrap cursor-pointer ${
-                    selectedCategory === cat
-                      ? 'text-white'
-                      : 'text-slate-400 hover:text-white hover:bg-white/4'
+                  onClick={() => scrollBy(-340)}
+                  disabled={!canScrollLeft}
+                  className={`w-10 h-10 rounded-xl bg-[#0F1523] border border-white/8 text-slate-300 transition-all flex items-center justify-center active:scale-95 shadow-sm ${
+                    canScrollLeft
+                      ? 'hover:bg-[#151D30] hover:border-white/20 hover:text-white cursor-pointer'
+                      : 'opacity-40 cursor-not-allowed'
                   }`}
+                  aria-label="Scroll skills left"
                 >
-                  {selectedCategory === cat && (
-                    <motion.div
-                      layoutId="skillsActiveTab"
-                      className="absolute inset-0 bg-[#4F8CFF] rounded-lg shadow-sm"
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                    />
-                  )}
-                  <span className="relative z-10">{cat}</span>
-                </motion.button>
-              ))}
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => scrollBy(340)}
+                  disabled={!canScrollRight}
+                  className={`w-10 h-10 rounded-xl bg-[#0F1523] border border-white/8 text-slate-300 transition-all flex items-center justify-center active:scale-95 shadow-sm ${
+                    canScrollRight
+                      ? 'hover:bg-[#151D30] hover:border-white/20 hover:text-white cursor-pointer'
+                      : 'opacity-40 cursor-not-allowed'
+                  }`}
+                  aria-label="Scroll skills right"
+                >
+                  <ChevronRight className="w-5 h-5" />
+                </button>
+              </div>
             </div>
           </div>
         </ScrollReveal>
 
-        {/* Bento Grid */}
-        <motion.div layout className="space-y-6">
-          <AnimatePresence mode="popLayout">
-            {visibleFeatured.length > 0 && (
-              <motion.div
-                layout
-                key="featured-row"
-                className="custom-grid-skills-featured"
-              >
-                <AnimatePresence mode="popLayout">
-                  {visibleFeatured.map((skill) => (
-                    <FeaturedSkillCard key={skill.id} skill={skill} />
-                  ))}
-                </AnimatePresence>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          <motion.div layout className="custom-grid-skills-supporting">
+        {/* Horizontal Slider Track with Snap and Drag Gesture */}
+        <div className="relative">
+          <div
+            ref={trackRef}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUpOrLeave}
+            onMouseLeave={handleMouseUpOrLeave}
+            className="flex items-stretch gap-5 overflow-x-auto hide-scrollbar scroll-smooth snap-x snap-mandatory py-4 px-1 cursor-grab active:cursor-grabbing"
+            style={{ WebkitOverflowScrolling: 'touch' }}
+          >
             <AnimatePresence mode="popLayout">
-              {visibleSupporting.map((skill) => (
-                <SupportingSkillCard key={skill.id} skill={skill} />
+              {filteredSkills.map((skill) => (
+                <SkillCard key={skill.id} skill={skill} />
               ))}
             </AnimatePresence>
-          </motion.div>
-        </motion.div>
+          </div>
+
+          {/* Bottom Progress Bar & Gesture Instructions */}
+          <div className="mt-4 flex items-center justify-between gap-4">
+            {/* Scroll Progress Track */}
+            <div className="flex-1 max-w-xs h-1 rounded-full bg-white/6 overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-[#4F8CFF] to-[#8B5CF6] transition-all duration-150 rounded-full"
+                style={{ width: `${Math.max(15, scrollProgress)}%` }}
+              />
+            </div>
+
+            <span className="text-[11px] text-slate-500 font-medium">
+              Swipe or drag horizontally to explore stack ({filteredSkills.length} technologies)
+            </span>
+          </div>
+        </div>
       </div>
     </section>
   );
